@@ -22,6 +22,7 @@
         <org.mybatis.spring.version>1.2.3</org.mybatis.spring.version>
         <mysql.version>5.1.45</mysql.version>
         <com.alibaba.druid.version>1.1.9</com.alibaba.druid.version>
+        <logback.version>1.1.11</logback.version>
     </properties>
 
     <dependencies>
@@ -32,7 +33,6 @@
             <artifactId>spring-webmvc</artifactId>
             <version>${org.springframework.spring.version}</version>
         </dependency>
-
         <!-- spring jdbc 底层自动依赖 spring-tx -->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -45,7 +45,6 @@
             <artifactId>spring-aspects</artifactId>
             <version>${org.springframework.spring.version}</version>
         </dependency>
-
         <!-- mybatis -->
         <dependency>
             <groupId>org.mybatis</groupId>
@@ -69,7 +68,6 @@
             <artifactId>druid</artifactId>
             <version>${com.alibaba.druid.version}</version>
         </dependency>
-
         <!-- servlet-api -->
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -84,6 +82,92 @@
             <version>4.11</version>
             <scope>test</scope>
         </dependency>
+        <!--swagger2-->
+        <!-- springfox的核心jar包 -->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>2.6.0</version>
+        </dependency>
+        <!-- springfox-ui 的 jar包(里面包含了swagger的界面静态文件)-->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>2.6.0</version>
+        </dependency>
+        <!-- json -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.9.5</version>
+        </dependency>
+
+        <!--注解工具类-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.16.20</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- logback 日志 -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.25</version>
+        </dependency>
+
+        <!--参数检验-->
+        <!--参数检验接口-->
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+            <version>2.0.1.Final</version>
+        </dependency>
+        <!--参数检验实现-->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>6.0.9.Final</version>
+        </dependency>
+
+
+
+        <!-- tools -->
+        <dependency>
+            <groupId>commons-collections</groupId>
+            <artifactId>commons-collections</artifactId>
+            <version>3.2.2</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>1.10</version>
+        </dependency>
+        <!-- google.guava -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>20.0</version>
+        </dependency>
+        <!--日期工具类：面向 Java 应用程序的日期/时间库的替代选择，Joda-Time 令时间和日期值变得易于管理、操作和理解-->
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+            <version>2.9.9</version>
+        </dependency>
+        <!--Commons项目中用来处理Java基本对象方法的工具类包-->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.7</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -111,6 +195,8 @@
                     </executions>
                 </plugin>
             </plugins>
+
+
         </pluginManagement>
     </build>
 </project>
