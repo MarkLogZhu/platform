@@ -3,17 +3,38 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:p="http://www.springframework.org/schema/p"
        xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:mav="http://www.springframework.org/schema/tool" xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:mav="http://www.springframework.org/schema/tool"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
        xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd http://www.springframework.org/schema/tool http://www.springframework.org/schema/tool/spring-tool.xsd">
     <!-- 配置Controller -->
     <context:component-scan base-package="com.marklogzhu.platform.controller"/>
-    <!--开启注解功能，如果不设置也会添加默认的实现类，但是该实现类已过时 -->
+    <!-- 开启注解功能，如果不设置也会添加默认的实现类，但是该实现类已过时 -->
     <mvc:annotation-driven/>
+
+    <!--配置视图解析器,使用视图名称来解析视图-->
+    <bean class="org.springframework.web.servlet.view.BeanNameViewResolver" />
+    <!--Json解析视图-->
+    <bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView"/>
+    <!-- 自定义的全局异常处理器 只要实现HandlerExceptionResolver接口就是全局异常处理器-->
+    <bean class="com.marklogzhu.platform.common.GlobalExceptionHandler"/>
+
     <!-- jsp 视图解析器  -->
     <bean id="jspViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/jsp/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
+
+    <!--注入应用上下文工具类，lazy-init="false" 表示项目启动时立刻实例化-->
+    <bean class="com.marklogzhu.platform.common.ApplicationContextHelper" lazy-init="false" />
+
+
+    <!-- 将SwaggerConfig 配置类注入-->
+    <bean class="com.marklogzhu.platform.common.SwaggerConfig"/>
+    <!-- 配置swagger资源不被拦截 -->
+    <mvc:default-servlet-handler/>
+    <mvc:resources mapping="swagger-ui.html" location="classpath:/META-INF/resources/"/>
+    <mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/"/>
+
 </beans>
