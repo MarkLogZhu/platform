@@ -15,44 +15,50 @@
 
     <!--引入数据库属性配置文件-->
     <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="location" value="jdbc.properties"/>
+        <property name="ignoreUnresolvablePlaceholders" value="true"/>
+        <property name="location" value="classpath:jdbc.properties"/>
     </bean>
-    <!-- 数据库连接池设置 -->
-    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
+
+
+    <!-- 第一个数据库连接池设置 -->
+    <bean id="dataSource_01" class="com.alibaba.druid.pool.DruidDataSource"
           destroy-method="close">
-        <property name="driverClassName" value="${driver}"/>
+        <property name="driverClassName" value="${driverClassName}"/>
         <property name="url" value="${url}"/>
         <property name="username" value="${username}"/>
         <property name="password" value="${password}"/>
         <!-- 初始化连接大小 -->
-        <property name="initialSize" value="${initialSize}"></property>
+        <property name="initialSize" value="${initialSize}"/>
         <!-- 连接池最大数量 -->
-        <property name="maxActive" value="${maxActive}"></property>
-        <!-- 连接池最大空闲 -->
-        <property name="maxIdle" value="${maxIdle}"></property>
+        <property name="maxActive" value="${maxActive}"/>
         <!-- 连接池最小空闲 -->
-        <property name="minIdle" value="${minIdle}"></property>
+        <property name="minIdle" value="${minIdle}"/>
         <!-- 获取连接最大等待时间 -->
-        <property name="maxWait" value="${maxWait}"></property>
+        <property name="maxWait" value="${maxWait}"/>
     </bean>
-    <!-- spring 和 MyBatis 整合 -->
+
+
+    <!-- spring和MyBatis完美整合，不需要mybatis的配置映射文件 -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <property name="dataSource" ref="dataSource"/>
+        <property name="dataSource" ref="dataSource_01"/>
         <!-- 自动扫描 mapping.xml 文件 -->
-        <property name="mapperLocations" value="classpath:mapper/*.xml"></property>
-        <!-- mybatis配置文件 -->
-        <property name="configLocation" value="classpath:mybatis/mybatis-config.xml"></property>
+        <property name="mapperLocations" value="classpath:mappers/*.xml"/>
+        <!-- 关联 mybatis 配置文件 -->
+        <property name="configLocation" value="classpath:mybatis/mybatis-config.xml"/>
     </bean>
+
     <!-- DAO接口所在包名，Spring会自动查找其下的类 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="com.marklogzhu.platform.dao"/>
-        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
+
+
     <!-- 启用事物注解 -->
-    <tx:annotation-driven />
+    <tx:annotation-driven/>
     <!-- 事务管理 -->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <property name="dataSource" ref="dataSource"/>
+        <property name="dataSource" ref="dataSource_01"/>
         <property name="rollbackOnCommitFailure" value="true"/>
     </bean>
 </beans>

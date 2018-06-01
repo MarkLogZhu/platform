@@ -1,5 +1,7 @@
 package com.marklogzhu.platform.common;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
@@ -16,6 +18,14 @@ public class JsonData<T> implements Serializable {
     private String msg;
 
     private T data;
+
+
+    @JsonIgnore
+    //使之不在json序列化结果当中
+    public boolean isSuccess(){
+        return status == CodeMsg.SUCCESS.getCode();
+    }
+
 
     public static JsonData createBySuccess() {
         return new JsonData(CodeMsg.SUCCESS.getCode());

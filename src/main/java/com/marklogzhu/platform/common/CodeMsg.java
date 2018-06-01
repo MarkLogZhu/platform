@@ -7,9 +7,9 @@ public class CodeMsg {
     // 通用的错误码
     public static CodeMsg SUCCESS = new CodeMsg(0, "success");
     public static CodeMsg PAGE_ERROR = new CodeMsg(500001,"页面请求异常，异常原因：%s");
-    public static CodeMsg UNKNOWN_JSON_ERROR = new CodeMsg(500002,"未定义数据请求异常，异常原因：%s");
+    public static CodeMsg UNKNOWN_JSON_ERROR = new CodeMsg(500002,"未定义JSON数据请求异常，异常原因：%s");
     public static CodeMsg UNKNOWN_ERROR = new CodeMsg(500003,"未定义请求异常，异常原因：%s");
-    public static CodeMsg PARAM_CHECK_ERROR = new CodeMsg(500004,"参数检验异常，异常原因：%s");
+    public static CodeMsg PARAM_CHECK_ERROR = new CodeMsg(500004,"参数检验错误，错误提示：%s");
     public static CodeMsg TIME_NOT_MATCH_ERROR = new CodeMsg(500005,"%s");
     public static CodeMsg SERVER_ERROR = new CodeMsg(500100, "服务端异常");
     public static CodeMsg BIND_ERROR = new CodeMsg(500101, "参数校验异常：%s");
@@ -21,8 +21,11 @@ public class CodeMsg {
     public static CodeMsg MOBILE_EMPTY = new CodeMsg(500212, "手机号不能为空");
     public static CodeMsg MOBILE_ERROR = new CodeMsg(500213, "手机号格式错误");
     public static CodeMsg MOBILE_NOT_EXIST = new CodeMsg(500214, "手机号不存在");
-    public static CodeMsg PASSWORD_ERROR = new CodeMsg(500215, "密码错误");
+    public static CodeMsg USER_NOT_EXIST = new CodeMsg(500214, "用户不存在");
+    public static CodeMsg PASSWORD_ERROR = new CodeMsg(500215, "用户名或密码错误");
+    public static CodeMsg USER_FREEZE = new CodeMsg(500215, "账号处于冻结状态");
     public static CodeMsg SUCCESS_LOGIN = new CodeMsg(0,"登录成功");
+    public static CodeMsg SUCCESS_LOGOUT = new CodeMsg(0,"登出成功");
     public static CodeMsg ERROR_LOGIN = new CodeMsg(500216,"登录失败，错误原因：%s");
     // 其他模板自定义
     private CodeMsg( int code,String msg ) {

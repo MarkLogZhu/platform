@@ -29,4 +29,5 @@ public class ApplicationContextHelper implements ApplicationContextAware {
         }
         return applicationContext.getBean(name, clazz);
     }
+
 }
