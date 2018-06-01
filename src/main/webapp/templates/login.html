@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../static/AdminLTE/bower_components/bootstrap/dist/css/bootstrap.min.css">
     <!-- bootstrapValidator -->
     <link rel="stylesheet"
-          href="../static/AdminLTE/bower_components/bootstrap-validator/dist/css/bootstrapValidator.min.css">
+          href="../static/AdminLTE/plugins/bootstrap-validator/dist/css/bootstrapValidator.min.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="../static/AdminLTE/bower_components/font-awesome/css/font-awesome.min.css">
     <!-- Ionicons -->
@@ -40,7 +40,7 @@
 
         <form method="post">
             <div class="form-group has-feedback">
-                <input type="name" class="form-control" id="userName" name="userName" placeholder="用户名">
+                <input type="text" class="form-control" id="userName" name="userName" placeholder="用户名">
                 <span class="glyphicon glyphicon glyphicon-user form-control-feedback"></span>
             </div>
             <div class="form-group has-feedback">
@@ -79,7 +79,7 @@
 <!-- Bootstrap 3.3.7 -->
 <script src="../static/AdminLTE/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- bootstrapValidator -->
-<script src="../static/AdminLTE/bower_components/bootstrap-validator/dist/js/bootstrapValidator.min.js"></script>
+<script src="../static/AdminLTE/plugins/bootstrap-validator/dist/js/bootstrapValidator.min.js"></script>
 <!-- iCheck -->
 <script src="../static/AdminLTE/plugins/iCheck/icheck.min.js"></script>
 <!-- layer -->
@@ -137,7 +137,7 @@
                 password: encryptedPassword
             },
             success: function (data) {
-                if (data.status == 0) {
+                if (data.status === 0) {
                     window.location.href = "/home.page";
                 } else {
                     layer.msg(data.msg, {time: 600});
